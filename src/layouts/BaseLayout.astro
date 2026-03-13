@@ -78,6 +78,9 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Extra head content (meta tags, structured data) -->
+    <slot name="head" />
   </head>
   <body>
     <slot name="header" />
