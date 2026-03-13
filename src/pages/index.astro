@@ -1,27 +1,85 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import AntiGaspi from '../components/AntiGaspi.astro';
-import LeChef from '../components/LeChef.astro';
-import Download from '../components/Download.astro';
-import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout
-  title="DisChef — Votre frigo a du talent | App cuisine IA anti-gaspi"
-  description="DisChef analyse votre frigo et compose des recettes sur mesure grace a l'IA. Fini le gaspillage alimentaire. Telechargez gratuitement."
+  title="DisChef — Votre frigo a du talent"
+  description="DisChef analyse votre frigo et compose des recettes sur mesure grace a l'IA. Bientot disponible."
 >
-  <Header slot="header" />
-
-  <Hero />
-  <Features />
-  <HowItWorks />
-  <LeChef />
-  <AntiGaspi />
-  <Download />
-
-  <Footer slot="footer" />
+  <div class="coming-soon">
+    <div class="coming-card">
+      <img src="/images/logo.svg" alt="DisChef" width="72" height="72" class="coming-logo" />
+      <h1>DisChef</h1>
+      <p class="coming-tagline">Votre frigo a du <span class="text-gradient">talent.</span></p>
+      <div class="coming-divider"></div>
+      <p class="coming-text">
+        Notre site fait peau neuve.<br />
+        On revient tres vite avec quelque chose de delicieux.
+      </p>
+      <div class="coming-badge">
+        <span>🍊</span> En construction
+      </div>
+    </div>
+  </div>
 </BaseLayout>
+
+<style>
+  .coming-soon {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: linear-gradient(135deg, var(--slate-50) 0%, #fff7ed 100%);
+  }
+
+  .coming-card {
+    text-align: center;
+    max-width: 480px;
+  }
+
+  .coming-logo {
+    margin: 0 auto 24px;
+    border-radius: 16px;
+  }
+
+  .coming-card h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+
+  .coming-tagline {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--slate-800);
+    margin-bottom: 24px;
+  }
+
+  .coming-divider {
+    width: 60px;
+    height: 4px;
+    background: var(--frigo-500);
+    border-radius: 2px;
+    margin: 0 auto 24px;
+  }
+
+  .coming-text {
+    font-size: 1.125rem;
+    color: var(--slate-500);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .coming-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--frigo-50);
+    color: var(--frigo-600);
+    border-radius: 100px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+  }
+</style>
