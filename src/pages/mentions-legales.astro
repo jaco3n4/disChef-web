@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Mentions legales"
+  description="Mentions legales du site DisChef.fr"
+>
+  <Header slot="header" />
+
+  <div class="legal-page">
+    <div class="container">
+      <h1>Mentions legales</h1>
+      <p class="legal-update">Derniere mise a jour : Mars 2026</p>
+
+      <div class="legal-content">
+        <section>
+          <h2>Editeur du site</h2>
+          <p>
+            Le site dischef.fr est edite par :<br />
+            <em>[A completer — Nom de la societe ou du responsable]</em><br />
+            <em>[Adresse]</em><br />
+            Email : <a href="mailto:contact@dischef.fr">contact@dischef.fr</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Hebergement</h2>
+          <p>
+            Ce site est heberge par Cloudflare, Inc.<br />
+            101 Townsend St, San Francisco, CA 94107, USA<br />
+            Site web : cloudflare.com
+          </p>
+        </section>
+
+        <section>
+          <h2>Propriete intellectuelle</h2>
+          <p>
+            L'ensemble du contenu du site dischef.fr (textes, images, logo, design)
+            est protege par le droit d'auteur. Toute reproduction, meme partielle,
+            est interdite sans autorisation prealable.
+          </p>
+        </section>
+
+        <section>
+          <h2>Donnees personnelles</h2>
+          <p>
+            Pour toute question relative a vos donnees personnelles, consultez notre
+            <a href="/confidentialite">politique de confidentialite</a>.
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-top: calc(var(--header-height) + 48px);
+    padding-bottom: 80px;
+  }
+
+  .legal-page h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .legal-update {
+    font-size: 0.875rem;
+    color: var(--slate-400);
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content section {
+    margin-bottom: 40px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .legal-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal-content a {
+    color: var(--frigo-500);
+    text-decoration: underline;
+  }
+
+  .legal-content a:hover {
+    color: var(--frigo-600);
+  }
+
+  .legal-content em {
+    color: var(--slate-400);
+  }
+</style>

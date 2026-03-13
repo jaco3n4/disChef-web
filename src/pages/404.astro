@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page introuvable"
+  description="Cette page n'existe pas sur DisChef."
+  noIndex={true}
+>
+  <div class="page-404">
+    <div class="content-404">
+      <div class="icon-404">🍳</div>
+      <h1>404</h1>
+      <p>Oups, cette page n'existe pas.<br />Peut-etre que Le Chef peut vous aider ?</p>
+      <a href="/" class="btn btn-primary">Retour a l'accueil</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-404 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .content-404 {
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .icon-404 {
+    font-size: 4rem;
+    margin-bottom: 16px;
+  }
+
+  .content-404 h1 {
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--slate-200);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .content-404 p {
+    margin-bottom: 32px;
+    font-size: 1.0625rem;
+  }
+</style>

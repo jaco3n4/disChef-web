@@ -1,0 +1,322 @@
+---
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="badge badge-orange animate-fade-in-up">
+        <span>🍊</span> App cuisine IA anti-gaspi
+      </div>
+
+      <h1 class="hero-title animate-fade-in-up delay-100">
+        Votre frigo<br />a du <span class="text-gradient">talent.</span>
+      </h1>
+
+      <p class="hero-subtitle animate-fade-in-up delay-200">
+        DisChef analyse votre frigo et compose des recettes sur mesure.
+        Fini le gaspillage, place a la creativite.
+      </p>
+
+      <div class="hero-cta animate-fade-in-up delay-300">
+        <a href="#download" class="btn btn-primary btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Telecharger gratuitement
+        </a>
+        <a href="#how-it-works" class="btn btn-secondary">
+          Decouvrir
+        </a>
+      </div>
+
+      <div class="hero-stats animate-fade-in-up delay-400">
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🧑‍🍳</span>
+          <span class="hero-stat-text">IA Chef personnel</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">🎙️</span>
+          <span class="hero-stat-text">100% vocal</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-icon">♻️</span>
+          <span class="hero-stat-text">Anti-gaspi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual animate-fade-in delay-200">
+      <div class="hero-phone">
+        <div class="hero-phone-screen">
+          <div class="phone-mockup-header">
+            <div class="phone-notch"></div>
+          </div>
+          <div class="phone-mockup-content">
+            <div class="phone-greeting">Bonjour, Chef !</div>
+            <div class="phone-question">Qu'est-ce qu'on mange ?</div>
+            <div class="phone-cards">
+              <div class="phone-card phone-card-green">
+                <span class="phone-card-badge">100% DISPO</span>
+                <span class="phone-card-name">La Debrouille</span>
+              </div>
+              <div class="phone-card phone-card-orange">
+                <span class="phone-card-badge">CHOIX DU CHEF</span>
+                <span class="phone-card-name">Le Coup de Coeur</span>
+              </div>
+              <div class="phone-card phone-card-dark">
+                <span class="phone-card-badge">SORTEZ DU CADRE</span>
+                <span class="phone-card-name">L'Aventure</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-glow"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: calc(var(--header-height) + 48px);
+    padding-bottom: 80px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-top: calc(var(--header-height) + 80px);
+      padding-bottom: 120px;
+    }
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-inner {
+      flex-direction: row;
+      gap: 64px;
+      align-items: center;
+    }
+  }
+
+  .hero-content {
+    flex: 1;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      text-align: left;
+    }
+  }
+
+  .hero-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+    color: var(--slate-500);
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-cta {
+      justify-content: flex-start;
+    }
+  }
+
+  .btn-lg {
+    padding: 18px 36px;
+    font-size: 1.125rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (min-width: 768px) {
+    .hero-stats {
+      justify-content: flex-start;
+    }
+  }
+
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-stat-icon {
+    font-size: 1.25rem;
+  }
+
+  .hero-stat-text {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--slate-500);
+  }
+
+  .hero-stat-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--slate-200);
+  }
+
+  /* Phone mockup */
+  .hero-visual {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .hero-phone {
+    width: 280px;
+    height: 560px;
+    background: #000;
+    border-radius: 40px;
+    padding: 12px;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .hero-phone {
+      width: 320px;
+      height: 640px;
+    }
+  }
+
+  .hero-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #f8fafc;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phone-mockup-header {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 8px;
+    background: #ffffff;
+  }
+
+  .phone-notch {
+    width: 120px;
+    height: 28px;
+    background: #000;
+    border-radius: 14px;
+  }
+
+  .phone-mockup-content {
+    padding: 24px 20px;
+    flex: 1;
+  }
+
+  .phone-greeting {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--slate-400);
+    margin-bottom: 4px;
+  }
+
+  .phone-question {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--slate-900);
+    margin-bottom: 24px;
+  }
+
+  .phone-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phone-card {
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .phone-card-green {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  }
+
+  .phone-card-orange {
+    background: linear-gradient(135deg, var(--frigo-50), var(--frigo-100));
+    border: 2px solid var(--frigo-200);
+  }
+
+  .phone-card-dark {
+    background: linear-gradient(135deg, var(--slate-800), var(--slate-900));
+  }
+
+  .phone-card-badge {
+    font-size: 0.625rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .phone-card-green .phone-card-badge { color: #059669; }
+  .phone-card-orange .phone-card-badge { color: var(--frigo-600); }
+  .phone-card-dark .phone-card-badge { color: var(--slate-400); }
+
+  .phone-card-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .phone-card-green .phone-card-name { color: var(--slate-800); }
+  .phone-card-orange .phone-card-name { color: var(--slate-900); }
+  .phone-card-dark .phone-card-name { color: #ffffff; }
+
+  .hero-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.15), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Ouvrez votre frigo',
+    description: 'Scannez vos ingredients avec l\'appareil photo ou ajoutez-les vocalement. Le Chef memorise tout.',
+    icon: '📷',
+  },
+  {
+    number: '02',
+    title: 'Dites "Qu\'est-ce qu\'on mange ?"',
+    description: 'Le Chef analyse votre frigo, vos gouts et vos contraintes. En quelques secondes, 3 recettes uniques.',
+    icon: '🎙️',
+  },
+  {
+    number: '03',
+    title: 'Cuisinez, savourez',
+    description: 'Suivez les etapes pas a pas — vocalement si vous avez les mains sales. Bon appetit !',
+    icon: '🍽️',
+  },
+];
+---
+
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <div class="badge badge-orange">Simple comme bonjour</div>
+      <h2>Comment ca marche</h2>
+      <p class="section-subtitle">
+        3 etapes pour passer du frigo a l'assiette. Pas de prise de tete.
+      </p>
+    </div>
+
+    <div class="steps">
+      {steps.map((step, i) => (
+        <div class="step" data-animate style={`animation-delay: ${i * 0.15}s`}>
+          <div class="step-number-wrap">
+            <span class="step-number">{step.number}</span>
+            {i < steps.length - 1 && <div class="step-line" />}
+          </div>
+          <div class="step-content">
+            <div class="step-icon">{step.icon}</div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+  }
+
+  .section-header h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--slate-500);
+  }
+
+  .steps {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 24px;
+    position: relative;
+  }
+
+  .step-number-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--frigo-500);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .step-line {
+    width: 2px;
+    flex: 1;
+    background: var(--slate-200);
+    min-height: 40px;
+  }
+
+  .step-content {
+    padding-bottom: 40px;
+  }
+
+  .step-icon {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .step-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--slate-900);
+  }
+
+  .step-content p {
+    font-size: 1rem;
+    color: var(--slate-500);
+    line-height: 1.6;
+  }
+</style>

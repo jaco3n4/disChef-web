@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Conditions generales d'utilisation"
+  description="Conditions generales d'utilisation de l'application DisChef."
+>
+  <Header slot="header" />
+
+  <div class="legal-page">
+    <div class="container">
+      <h1>Conditions generales d'utilisation</h1>
+      <p class="legal-update">Derniere mise a jour : Mars 2026</p>
+
+      <div class="legal-content">
+        <section>
+          <h2>1. Objet</h2>
+          <p>
+            Les presentes conditions regissent l'utilisation de l'application mobile
+            DisChef et du site web dischef.fr. En utilisant nos services, vous acceptez
+            ces conditions dans leur integralite.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Description du service</h2>
+          <p>
+            DisChef est une application de cuisine assistee par intelligence artificielle.
+            Elle permet de generer des recettes personnalisees a partir de vos ingredients,
+            de planifier vos repas et de creer des listes de courses.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Compte utilisateur</h2>
+          <p>
+            L'utilisation de DisChef necessite la creation d'un compte. Vous etes
+            responsable de la confidentialite de vos identifiants de connexion.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Contenu genere par l'IA</h2>
+          <p>
+            Les recettes et suggestions sont generees par intelligence artificielle.
+            DisChef ne garantit pas l'exactitude nutritionnelle des informations fournies.
+            En cas d'allergie alimentaire, verifiez toujours les ingredients avant de cuisiner.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Propriete intellectuelle</h2>
+          <p>
+            L'application DisChef, son design, son code et son contenu sont proteges
+            par le droit d'auteur. Les recettes generees pour votre usage personnel
+            vous appartiennent.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Limitation de responsabilite</h2>
+          <p>
+            DisChef est fourni "en l'etat". Nous ne pouvons etre tenus responsables
+            de tout dommage lie a l'utilisation de l'application, notamment en cas
+            de reaction allergique a un ingredient.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Modification des CGU</h2>
+          <p>
+            Nous nous reservons le droit de modifier ces conditions. Les utilisateurs
+            seront informes de tout changement significatif.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Contact</h2>
+          <p>
+            Pour toute question : <a href="mailto:contact@dischef.fr">contact@dischef.fr</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-top: calc(var(--header-height) + 48px);
+    padding-bottom: 80px;
+  }
+
+  .legal-page h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .legal-update {
+    font-size: 0.875rem;
+    color: var(--slate-400);
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content section {
+    margin-bottom: 40px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .legal-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal-content a {
+    color: var(--frigo-500);
+    text-decoration: underline;
+  }
+
+  .legal-content a:hover {
+    color: var(--frigo-600);
+  }
+</style>

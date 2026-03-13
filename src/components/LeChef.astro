@@ -1,0 +1,178 @@
+---
+---
+
+<section class="section" id="le-chef">
+  <div class="container">
+    <div class="chef-inner" data-animate>
+      <div class="chef-visual">
+        <div class="chef-avatar">
+          <img src="/images/logo.svg" alt="Le Chef DisChef" width="120" height="120" />
+        </div>
+        <div class="chef-glow"></div>
+      </div>
+
+      <div class="chef-content">
+        <div class="badge badge-orange">Votre Chef personnel</div>
+        <h2>Rencontrez Le Chef</h2>
+        <p class="chef-intro">
+          Le Chef est votre IA culinaire personnelle. Il connait votre frigo,
+          vos gouts, vos allergies et votre budget. Il s'adapte a vous, pas l'inverse.
+        </p>
+
+        <div class="chef-quote">
+          <span class="quote-mark">&laquo;</span>
+          <p>Dites-moi ce que vous aimez, je m'occupe du reste !</p>
+        </div>
+
+        <div class="chef-capabilities">
+          <div class="capability">
+            <span class="cap-icon">🧠</span>
+            <div>
+              <strong>Il vous connait</strong>
+              <p>Regime, allergies, gouts, niveau — Le Chef retient tout.</p>
+            </div>
+          </div>
+          <div class="capability">
+            <span class="cap-icon">👀</span>
+            <div>
+              <strong>Il voit votre frigo</strong>
+              <p>Scan photo, saisie vocale — il sait ce que vous avez en stock.</p>
+            </div>
+          </div>
+          <div class="capability">
+            <span class="cap-icon">💬</span>
+            <div>
+              <strong>Il vous parle</strong>
+              <p>Posez vos questions, il repond. Meme les mains dans la farine.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .chef-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .chef-inner {
+      flex-direction: row;
+      gap: 80px;
+      text-align: left;
+    }
+  }
+
+  .chef-visual {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .chef-avatar {
+    width: 160px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--frigo-500);
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(249, 115, 22, 0.25);
+    position: relative;
+    z-index: 2;
+  }
+
+  .chef-avatar img {
+    width: 120px;
+    height: 120px;
+    filter: brightness(0) invert(1);
+  }
+
+  .chef-glow {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.12), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .chef-content {
+    flex: 1;
+  }
+
+  .chef-content h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .chef-intro {
+    margin-bottom: 24px;
+    max-width: 520px;
+  }
+
+  .chef-quote {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: var(--frigo-50);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 32px;
+    max-width: 520px;
+  }
+
+  .quote-mark {
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--frigo-300);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .chef-quote p {
+    font-size: 1.0625rem;
+    font-style: italic;
+    color: var(--slate-700);
+    line-height: 1.5;
+  }
+
+  .chef-capabilities {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .capability {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .cap-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .capability strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    margin-bottom: 2px;
+  }
+
+  .capability p {
+    font-size: 0.9375rem;
+    color: var(--slate-500);
+    line-height: 1.5;
+  }
+</style>

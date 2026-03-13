@@ -1,0 +1,162 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src="/images/logo.svg" alt="DisChef" width="36" height="36" />
+          <span>DisChef</span>
+        </a>
+        <p class="footer-tagline">Votre frigo a du talent.</p>
+        <p class="footer-sub">L'app cuisine IA anti-gaspi qui transforme votre frigo en festin.</p>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h4>Produit</h4>
+        <ul>
+          <li><a href="#features">Fonctionnalites</a></li>
+          <li><a href="#how-it-works">Comment ca marche</a></li>
+          <li><a href="#anti-gaspi">Anti-gaspi</a></li>
+          <li><a href="#download">Telecharger</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/mentions-legales">Mentions legales</a></li>
+          <li><a href="/confidentialite">Politique de confidentialite</a></li>
+          <li><a href="/cgu">Conditions d'utilisation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:contact@dischef.fr">contact@dischef.fr</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {currentYear} DisChef. Tous droits reserves.</p>
+      <p class="footer-mission">Rien ne se perd, tout se cuisine.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--slate-900);
+    color: var(--slate-300);
+    padding: 64px 0 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+    }
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    margin-bottom: 12px;
+  }
+
+  .footer-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .footer-logo span {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+  }
+
+  .footer-tagline {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--frigo-400);
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 0.875rem;
+    color: var(--slate-400);
+    line-height: 1.6;
+  }
+
+  .footer-col h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col a {
+    font-size: 0.9375rem;
+    color: var(--slate-400);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover {
+    color: var(--frigo-400);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--slate-800);
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  .footer-bottom p {
+    font-size: 0.875rem;
+    color: var(--slate-500);
+  }
+
+  .footer-mission {
+    font-style: italic;
+    color: var(--slate-500);
+  }
+</style>

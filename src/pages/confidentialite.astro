@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Politique de confidentialite"
+  description="Politique de confidentialite de l'application DisChef."
+>
+  <Header slot="header" />
+
+  <div class="legal-page">
+    <div class="container">
+      <h1>Politique de confidentialite</h1>
+      <p class="legal-update">Derniere mise a jour : Mars 2026</p>
+
+      <div class="legal-content">
+        <section>
+          <h2>Introduction</h2>
+          <p>
+            DisChef s'engage a proteger votre vie privee. Cette politique explique
+            comment nous collectons, utilisons et protegeons vos donnees personnelles
+            lorsque vous utilisez notre application mobile et notre site web.
+          </p>
+        </section>
+
+        <section>
+          <h2>Donnees collectees</h2>
+          <p>Nous collectons les donnees suivantes :</p>
+          <ul>
+            <li><strong>Compte :</strong> Email, mot de passe (chiffre)</li>
+            <li><strong>Profil culinaire :</strong> Regime, allergies, preferences, niveau de cuisine</li>
+            <li><strong>Frigo :</strong> Liste des ingredients que vous ajoutez</li>
+            <li><strong>Recettes :</strong> Recettes generees, favoris, historique</li>
+            <li><strong>Planning :</strong> Menus hebdomadaires generes</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Utilisation des donnees</h2>
+          <p>Vos donnees sont utilisees exclusivement pour :</p>
+          <ul>
+            <li>Generer des recettes personnalisees</li>
+            <li>Adapter Le Chef a vos preferences</li>
+            <li>Creer vos plannings et listes de courses</li>
+            <li>Ameliorer le service (donnees anonymisees)</li>
+          </ul>
+          <p><strong>Nous ne vendons jamais vos donnees a des tiers.</strong></p>
+        </section>
+
+        <section>
+          <h2>Stockage et securite</h2>
+          <p>
+            Vos donnees sont stockees sur Firebase (Google Cloud Platform),
+            dans la region europe-west1 (Belgique). Elles sont chiffrees en transit
+            et au repos. L'acces est protege par des regles de securite Firebase.
+          </p>
+        </section>
+
+        <section>
+          <h2>Vos droits</h2>
+          <p>Conformement au RGPD, vous disposez des droits suivants :</p>
+          <ul>
+            <li>Droit d'acces a vos donnees</li>
+            <li>Droit de rectification</li>
+            <li>Droit de suppression (depuis l'app ou par email)</li>
+            <li>Droit a la portabilite</li>
+            <li>Droit d'opposition</li>
+          </ul>
+          <p>
+            Pour exercer ces droits, contactez-nous :
+            <a href="mailto:contact@dischef.fr">contact@dischef.fr</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Cookies</h2>
+          <p>
+            Le site dischef.fr n'utilise pas de cookies de tracking.
+            Seuls des cookies techniques essentiels sont utilises pour le fonctionnement du site.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Pour toute question : <a href="mailto:contact@dischef.fr">contact@dischef.fr</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    padding-top: calc(var(--header-height) + 48px);
+    padding-bottom: 80px;
+  }
+
+  .legal-page h1 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .legal-update {
+    font-size: 0.875rem;
+    color: var(--slate-400);
+    margin-bottom: 48px;
+  }
+
+  .legal-content {
+    max-width: 720px;
+  }
+
+  .legal-content section {
+    margin-bottom: 40px;
+  }
+
+  .legal-content h2 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+
+  .legal-content p,
+  .legal-content li {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .legal-content ul {
+    margin: 12px 0;
+    padding-left: 24px;
+  }
+
+  .legal-content li {
+    margin-bottom: 6px;
+  }
+
+  .legal-content a {
+    color: var(--frigo-500);
+    text-decoration: underline;
+  }
+
+  .legal-content a:hover {
+    color: var(--frigo-600);
+  }
+</style>

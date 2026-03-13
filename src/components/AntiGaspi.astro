@@ -1,0 +1,173 @@
+---
+---
+
+<section class="section anti-gaspi" id="anti-gaspi">
+  <div class="container">
+    <div class="anti-gaspi-inner" data-animate>
+      <div class="anti-gaspi-content">
+        <div class="badge badge-green">Mission anti-gaspi</div>
+        <h2>Rien ne se perd,<br />tout se cuisine.</h2>
+        <p>
+          En France, chaque foyer jette en moyenne 30 kg d'aliments par an.
+          DisChef est ne pour changer ca.
+        </p>
+        <ul class="anti-gaspi-list">
+          <li>
+            <span class="check">✓</span>
+            <span>Le Chef priorise les ingredients qui vont perimer</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>Des recettes adaptees a ce que vous avez, pas a ce que vous n'avez pas</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>Un planning qui optimise chaque achat de la semaine</span>
+          </li>
+          <li>
+            <span class="check">✓</span>
+            <span>Suivi de votre gaspillage sauve</span>
+          </li>
+        </ul>
+        <a href="#download" class="btn btn-primary">
+          Rejoindre le mouvement
+        </a>
+      </div>
+
+      <div class="anti-gaspi-visual">
+        <div class="anti-gaspi-card">
+          <div class="agc-icon">♻️</div>
+          <div class="agc-stat">
+            <span class="agc-number">30 kg</span>
+            <span class="agc-label">de nourriture gaspillee par foyer / an</span>
+          </div>
+        </div>
+        <div class="anti-gaspi-card agc-highlight">
+          <div class="agc-icon">🧑‍🍳</div>
+          <div class="agc-stat">
+            <span class="agc-number">Le Chef</span>
+            <span class="agc-label">analyse votre frigo et sauve ce qui peut l'etre</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .anti-gaspi {
+    background: linear-gradient(180deg, var(--slate-50) 0%, #ffffff 100%);
+  }
+
+  .anti-gaspi-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .anti-gaspi-inner {
+      flex-direction: row;
+      gap: 80px;
+    }
+  }
+
+  .anti-gaspi-content {
+    flex: 1;
+  }
+
+  .anti-gaspi-content h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .anti-gaspi-content > p {
+    margin-bottom: 28px;
+  }
+
+  .anti-gaspi-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .anti-gaspi-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 1rem;
+    color: var(--slate-700);
+    line-height: 1.5;
+  }
+
+  .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: #ecfdf5;
+    color: #059669;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .anti-gaspi-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .anti-gaspi-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    border: 1px solid var(--slate-200);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .anti-gaspi-card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .agc-highlight {
+    border-color: var(--frigo-200);
+    background: var(--frigo-50);
+  }
+
+  .agc-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .agc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .agc-number {
+    font-size: 1.375rem;
+    font-weight: 800;
+    color: var(--slate-900);
+  }
+
+  .agc-label {
+    font-size: 0.875rem;
+    color: var(--slate-500);
+    line-height: 1.4;
+  }
+</style>

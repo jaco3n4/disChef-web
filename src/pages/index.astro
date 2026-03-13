@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import AntiGaspi from '../components/AntiGaspi.astro';
+import LeChef from '../components/LeChef.astro';
+import Download from '../components/Download.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="DisChef — Votre frigo a du talent | App cuisine IA anti-gaspi"
+  description="DisChef analyse votre frigo et compose des recettes sur mesure grace a l'IA. Fini le gaspillage alimentaire. Telechargez gratuitement."
+>
+  <Header slot="header" />
+
+  <Hero />
+  <Features />
+  <HowItWorks />
+  <LeChef />
+  <AntiGaspi />
+  <Download />
+
+  <Footer slot="footer" />
+</BaseLayout>
