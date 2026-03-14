@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^10.4.2",
     "astro": "^4.16.0",
     "firebase": "^11.0.0"
   }
