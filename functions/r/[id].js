@@ -113,9 +113,9 @@ const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.jaco3n4
 function renderRecipe(id, recipe) {
   const totalTime = [recipe.prep_time, recipe.cook_time].filter(Boolean).join(' + ');
   const ingredientCount = recipe.ingredients?.length || 0;
-  const ogDescription = `${esc(recipe.title)} — ${totalTime ? totalTime + ' \u00b7 ' : ''}${ingredientCount} ingrédients \u00b7 ${recipe.difficulty}. Découverte sur DisChef.`;
+  const ogDescription = `${esc(recipe.title)} \u2014 ${totalTime ? totalTime + ' \u00b7 ' : ''}${ingredientCount} ingr\u00e9dients \u00b7 ${recipe.difficulty}. D\u00e9couverte sur DisChef.`;
   const ogImage = recipe.image_url || 'https://dischef.fr/images/og-default.png';
-  const pageTitle = `${esc(recipe.title)} — Recette DisChef`;
+  const pageTitle = `${esc(recipe.title)} \u2014 Recette DisChef`;
   const canonicalUrl = `https://dischef.fr/r/${id}`;
 
   // Schema.org JSON-LD
@@ -123,7 +123,7 @@ function renderRecipe(id, recipe) {
     '@context': 'https://schema.org',
     '@type': 'Recipe',
     name: recipe.title,
-    description: recipe.description || `Recette « ${recipe.title} » sur DisChef`,
+    description: recipe.description || `Recette \u00ab ${recipe.title} \u00bb sur DisChef`,
     image: recipe.image_url || undefined,
     prepTime: recipe.prep_time ? `PT${recipe.prep_time.replace(/\D/g, '')}M` : undefined,
     cookTime: recipe.cook_time ? `PT${recipe.cook_time.replace(/\D/g, '')}M` : undefined,
@@ -152,56 +152,58 @@ function renderRecipe(id, recipe) {
     },
   };
 
-  // Build badges HTML
-  let badgesHtml = '';
+  // Build meta info HTML
+  let metaHtml = '';
   if (totalTime) {
-    badgesHtml += `
-      <div class="recipe-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span>${esc(totalTime)}</span>
-      </div>`;
+    metaHtml += `
+              <span class="recipe-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                ${esc(totalTime)}
+              </span>`;
   }
   if (recipe.difficulty) {
-    badgesHtml += `
-      <div class="recipe-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <span>${esc(recipe.difficulty)}</span>
-      </div>`;
+    metaHtml += `
+              <span class="recipe-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14.5a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M12 14.5V22"/><path d="m15.4 17.4 3.6 3.6"/><path d="m8.6 17.4-3.6 3.6"/><path d="M19.4 6.6a10 10 0 1 0-14.8 0"/></svg>
+                ${esc(recipe.difficulty)}
+              </span>`;
   }
   if (recipe.calories_per_serving > 0) {
-    badgesHtml += `
-      <div class="recipe-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-        <span>${recipe.calories_per_serving} kcal</span>
-      </div>`;
+    metaHtml += `
+              <span class="recipe-meta-item calories">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                ${recipe.calories_per_serving} kcal
+              </span>`;
   }
   if (recipe.servings > 0) {
-    badgesHtml += `
-      <div class="recipe-badge">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        <span>${recipe.servings} ${recipe.servings > 1 ? 'portions' : 'portion'}</span>
-      </div>`;
+    metaHtml += `
+              <span class="recipe-meta-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                ${recipe.servings} ${recipe.servings > 1 ? 'portions' : 'portion'}
+              </span>`;
   }
 
-  // Build ingredients HTML
+  // Build ingredients HTML (pill style)
   let ingredientsHtml = '';
   if (recipe.ingredients.length > 0) {
     const items = recipe.ingredients.map(ing => {
-      const label = typeof ing === 'string'
-        ? esc(ing)
-        : ing && ing.name
-          ? `${esc(ing.name)}${ing.quantity ? ' — ' + ing.quantity + (ing.unit ? ' ' + esc(ing.unit) : '') : ''}`
-          : esc(String(ing));
-      return `<li class="ingredient-item"><span class="ingredient-dot"></span><span>${label}</span></li>`;
+      if (typeof ing === 'string') {
+        return `<li class="ingredient-item"><span class="ingredient-name">${esc(ing)}</span></li>`;
+      }
+      if (ing && ing.name) {
+        const qty = ing.quantity ? `${ing.quantity}${ing.unit ? ' ' + esc(ing.unit) : ''}` : '';
+        return `<li class="ingredient-item"><span class="ingredient-name">${esc(ing.name)}</span>${qty ? `<span>${qty}</span>` : ''}</li>`;
+      }
+      return `<li class="ingredient-item"><span class="ingredient-name">${esc(String(ing))}</span></li>`;
     }).join('');
     ingredientsHtml = `
-      <section class="recipe-section">
-        <h2 class="recipe-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
-          Ingrédients
-        </h2>
-        <ul class="ingredients-list">${items}</ul>
-      </section>`;
+          <section class="recipe-section">
+            <h2 class="recipe-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/><path d="M6 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/><path d="M10 10v6"/><path d="M14 10v6"/></svg>
+              Ingr\u00e9dients
+            </h2>
+            <ul class="ingredients-list">${items}</ul>
+          </section>`;
   }
 
   // Build steps HTML
@@ -214,35 +216,33 @@ function renderRecipe(id, recipe) {
           ? esc(step.instruction)
           : esc(String(step));
       const timerHtml = (step && step.timer_seconds && step.timer_seconds > 0)
-        ? ` <span class="step-timer">${Math.round(step.timer_seconds / 60)} min</span>`
+        ? ` <span class="step-timer"><svg viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg> ${Math.round(step.timer_seconds / 60)} min</span>`
         : '';
       return `<li class="step-item"><div class="step-number">${i + 1}</div><p class="step-text">${text}${timerHtml}</p></li>`;
     }).join('');
     stepsHtml = `
-      <section class="recipe-section">
-        <h2 class="recipe-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          Préparation
-        </h2>
-        <ol class="steps-list">${items}</ol>
-      </section>`;
+          <section class="recipe-section">
+            <h2 class="recipe-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Pr\u00e9paration
+            </h2>
+            <ol class="steps-list">${items}</ol>
+          </section>`;
   }
 
-  // Build chef tip HTML
+  // Build chef tip HTML (yellow theme)
   let chefTipHtml = '';
   if (recipe.chef_tip) {
     chefTipHtml = `
-      <section class="recipe-section">
-        <div class="chef-tip-card">
-          <div class="chef-tip-header">
-            <span class="chef-tip-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><line x1="10" y1="22" x2="14" y2="22"/></svg>
-            </span>
-            <h3>Le conseil du Chef</h3>
-          </div>
-          <p class="chef-tip-text">${esc(recipe.chef_tip)}</p>
-        </div>
-      </section>`;
+          <section class="recipe-section">
+            <div class="chef-tip-card">
+              <svg class="chef-tip-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              <div class="chef-tip-content">
+                <h3>Le conseil du Chef</h3>
+                <p class="chef-tip-text">${esc(recipe.chef_tip)}</p>
+              </div>
+            </div>
+          </section>`;
   }
 
   // Build macros HTML
@@ -250,7 +250,7 @@ function renderRecipe(id, recipe) {
   if (recipe.protein || recipe.carbs || recipe.fat) {
     let macroCards = '';
     if (recipe.protein !== null) {
-      macroCards += `<div class="macro-card"><span class="macro-value">${recipe.protein}g</span><span class="macro-label">Protéines</span></div>`;
+      macroCards += `<div class="macro-card"><span class="macro-value">${recipe.protein}g</span><span class="macro-label">Prot\u00e9ines</span></div>`;
     }
     if (recipe.carbs !== null) {
       macroCards += `<div class="macro-card"><span class="macro-value">${recipe.carbs}g</span><span class="macro-label">Glucides</span></div>`;
@@ -259,23 +259,23 @@ function renderRecipe(id, recipe) {
       macroCards += `<div class="macro-card"><span class="macro-value">${recipe.fat}g</span><span class="macro-label">Lipides</span></div>`;
     }
     macrosHtml = `
-      <section class="recipe-section">
-        <h2 class="recipe-section-title">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          Valeurs nutritionnelles
-        </h2>
-        <div class="macros-grid">${macroCards}</div>
-      </section>`;
+          <section class="recipe-section">
+            <h2 class="recipe-section-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Valeurs nutritionnelles
+            </h2>
+            <div class="macros-grid">${macroCards}</div>
+          </section>`;
   }
 
   // Hero image HTML
   let heroHtml = '';
   if (recipe.image_url) {
     heroHtml = `
-      <div class="recipe-hero">
-        <img src="${esc(recipe.image_url)}" alt="${esc(recipe.title)}" class="recipe-hero-img" loading="eager" />
-        <div class="recipe-hero-overlay"></div>
-      </div>`;
+        <div class="recipe-hero">
+          <img src="${esc(recipe.image_url)}" alt="${esc(recipe.title)}" class="recipe-hero-img" loading="eager" />
+          <div class="recipe-hero-overlay"></div>
+        </div>`;
   }
 
   // Description HTML
@@ -288,11 +288,12 @@ function renderRecipe(id, recipe) {
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>${pageTitle}</title>
   <meta name="description" content="${esc(ogDescription)}" />
   <link rel="canonical" href="${canonicalUrl}" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article" />
@@ -301,6 +302,7 @@ function renderRecipe(id, recipe) {
   <meta property="og:image" content="${esc(ogImage)}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:site_name" content="DisChef" />
+  <meta property="og:locale" content="fr_FR" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -332,67 +334,61 @@ function renderRecipe(id, recipe) {
     <div class="app-banner">
       <div class="app-banner-inner">
         <a href="https://dischef.fr" class="app-banner-brand">
-          <img src="/images/logo.svg" alt="DisChef" width="40" height="40" />
+          <img src="/images/logo.svg" alt="DisChef" width="44" height="44" />
           <div class="app-banner-text">
             <span class="app-banner-name">DisChef</span>
             <span class="app-banner-tagline">Votre frigo a du talent.</span>
           </div>
         </a>
-        <a href="${IOS_STORE}" class="btn btn-primary btn-small app-banner-btn" id="banner-cta">Découvrir DisChef</a>
+        <a href="${IOS_STORE}" class="btn btn-primary btn-small" id="banner-cta">D\u00e9couvrir</a>
       </div>
     </div>
 
-    ${heroHtml}
-
     <div class="recipe-container">
-      <article class="recipe-content${!recipe.image_url ? ' no-hero' : ''}">
-        <header class="recipe-header">
-          <h1 class="recipe-title">${esc(recipe.title)}</h1>
-          ${descriptionHtml}
-        </header>
+      <div class="recipe-card-wrapper">
+        ${heroHtml}
 
-        <div class="recipe-badges">${badgesHtml}</div>
-        <div class="recipe-divider"></div>
+        <article class="recipe-content${!recipe.image_url ? ' no-hero' : ''}">
+          <header class="recipe-header">
+            <div class="recipe-meta text-uppercase-tracking">${metaHtml}
+            </div>
+            <h1 class="recipe-title title-black">${esc(recipe.title)}</h1>
+            ${descriptionHtml}
+          </header>
 
-        ${ingredientsHtml}
-        ${stepsHtml}
-        ${chefTipHtml}
-        ${macrosHtml}
-      </article>
+          ${ingredientsHtml}
+          ${stepsHtml}
+          ${chefTipHtml}
+          ${macrosHtml}
+        </article>
+      </div>
 
       <!-- Footer CTA -->
       <div class="recipe-cta">
         <div class="recipe-cta-card">
-          <img src="/images/logo.svg" alt="DisChef" width="48" height="48" class="recipe-cta-logo" />
+          <img src="/images/logo.svg" alt="DisChef" width="56" height="56" class="recipe-cta-logo" />
           <h2 class="recipe-cta-title">Envie de cuisiner avec ce que vous avez ?</h2>
           <p class="recipe-cta-subtitle">Essayez DisChef.</p>
-          <p class="recipe-cta-text">DisChef analyse votre frigo et compose des recettes sur mesure. Fini le gaspillage, fini le "qu'est-ce qu'on mange ?".</p>
+          <p class="recipe-cta-text">DisChef analyse votre frigo et compose des recettes sur mesure. Fini le gaspillage, fini le &laquo; qu&#x27;est-ce qu&#x27;on mange ? &raquo;.</p>
           <div class="recipe-cta-buttons">
             <a href="${IOS_STORE}" class="btn btn-primary" id="cta-store-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              Télécharger gratuitement
+              T\u00e9l\u00e9charger gratuitement
             </a>
           </div>
-          <p class="recipe-cta-free">Gratuit — Pas de carte bancaire requise</p>
+          <p class="recipe-cta-free">Gratuit \u2014 Pas de carte bancaire requise</p>
         </div>
       </div>
 
       <!-- Mini Footer -->
       <footer class="recipe-footer">
-        <a href="https://dischef.fr" class="recipe-footer-brand">
-          <img src="/images/logo.svg" alt="DisChef" width="24" height="24" />
-          <span>DisChef</span>
-        </a>
-        <div class="recipe-footer-links">
-          <a href="/mentions-legales">Mentions légales</a>
-          <a href="/confidentialite">Confidentialité</a>
-        </div>
+        <a href="https://dischef.fr">DisChef \u00a9 2026</a>
+        <a href="/mentions-legales">Mentions l\u00e9gales</a>
+        <a href="/confidentialite">Confidentialit\u00e9</a>
       </footer>
     </div>
   </div>
 
   <script>
-    // Detect platform and update store links
     var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     var iosUrl = '${IOS_STORE}';
     var androidUrl = '${ANDROID_STORE}';
@@ -417,21 +413,21 @@ function renderRecipe(id, recipe) {
 // ──────────────────────────────────────────
 
 function renderError(isExpired) {
-  const title = isExpired ? 'Cette recette a expiré' : 'Recette introuvable';
+  const title = isExpired ? 'Cette recette a expir\u00e9' : 'Recette introuvable';
   const subtitle = isExpired
-    ? 'Les liens de partage sont valables 30 jours. Téléchargez DisChef pour des recettes illimitées.'
-    : 'Ce lien ne mène nulle part. La recette a peut-être été supprimée ou le lien est incorrect.';
+    ? 'Les liens de partage sont valables 30 jours. T\u00e9l\u00e9chargez DisChef pour des recettes illimit\u00e9es.'
+    : 'Ce lien ne m\u00e8ne nulle part. La recette a peut-\u00eatre \u00e9t\u00e9 supprim\u00e9e ou le lien est incorrect.';
 
   const html = `<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>${esc(title)} — DisChef</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>${esc(title)} \u2014 DisChef</title>
   <meta name="description" content="${esc(subtitle)}" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
 
-  <meta property="og:title" content="${esc(title)} — DisChef" />
+  <meta property="og:title" content="${esc(title)} \u2014 DisChef" />
   <meta property="og:description" content="${esc(subtitle)}" />
   <meta property="og:site_name" content="DisChef" />
   <meta property="og:type" content="website" />
@@ -453,10 +449,9 @@ function renderError(isExpired) {
       <p class="recipe-empty-text">${esc(subtitle)}</p>
       <div class="recipe-empty-cta">
         <a href="${IOS_STORE}" class="btn btn-primary" id="empty-store-btn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          Découvrir DisChef
+          D\u00e9couvrir DisChef
         </a>
-        <a href="https://dischef.fr" class="btn btn-secondary">Retour à l'accueil</a>
+        <a href="https://dischef.fr" class="btn btn-secondary">Retour \u00e0 l&#x27;accueil</a>
       </div>
     </div>
   </div>
@@ -480,7 +475,7 @@ function renderError(isExpired) {
 }
 
 // ──────────────────────────────────────────
-// Inline CSS — Japandi Design (complete)
+// Inline CSS — New Design
 // ──────────────────────────────────────────
 
 const CSS_RECIPE = `
@@ -488,177 +483,167 @@ const CSS_RECIPE = `
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --frigo-50: #fff7ed;
-  --frigo-100: #ffedd5;
-  --frigo-200: #fed7aa;
-  --frigo-300: #fdba74;
-  --frigo-400: #fb923c;
-  --frigo-500: #f97316;
-  --frigo-600: #ea580c;
-  --frigo-700: #c2410c;
-  --frigo-800: #9a3412;
-  --frigo-900: #7c2d12;
-  --slate-50: #f8fafc;
-  --slate-100: #f1f5f9;
-  --slate-200: #e2e8f0;
-  --slate-300: #cbd5e1;
-  --slate-400: #94a3b8;
-  --slate-500: #64748b;
-  --slate-600: #475569;
-  --slate-700: #334155;
-  --slate-800: #1e293b;
-  --slate-900: #0f172a;
+  --orange-50: #fff7ed; --orange-100: #ffedd5; --orange-400: #fb923c; --orange-500: #f97316; --orange-600: #ea580c;
+  --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1; --slate-400: #94a3b8;
+  --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b; --slate-900: #0f172a;
+  --yellow-50: #fefce8; --yellow-100: #fef08a; --yellow-500: #eab308; --yellow-700: #a16207; --yellow-800: #854d0e;
 }
 
 html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--slate-800); background: #fff; line-height: 1.6; font-size: 16px; }
+body { font-family: 'Inter', sans-serif; color: var(--slate-800); background: var(--slate-100); line-height: 1.6; font-size: 16px; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
+
+/* === Typography Helpers === */
+.title-black { font-weight: 900; letter-spacing: -0.02em; }
+.text-uppercase-tracking { text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; }
 
 /* === Buttons === */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.125rem; border: none; cursor: pointer;
-  border-radius: 16px; padding: 16px 32px; transition: all 0.2s ease; text-decoration: none;
+  font-family: inherit; font-weight: 700; font-size: 1rem; border: none; cursor: pointer;
+  border-radius: 9999px; padding: 16px 32px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none;
 }
-.btn:active { transform: scale(0.98); }
-.btn-primary { background: var(--frigo-500); color: #fff; box-shadow: 0 10px 25px rgba(249,115,22,0.3); }
-.btn-primary:hover { background: var(--frigo-400); box-shadow: 0 15px 35px rgba(249,115,22,0.4); transform: translateY(-2px); }
-.btn-secondary { background: #fff; color: var(--slate-700); border: 2px solid var(--slate-200); }
-.btn-secondary:hover { border-color: var(--frigo-300); color: var(--frigo-600); }
-.btn-small { font-size: 0.875rem; padding: 10px 20px; border-radius: 12px; }
+.btn:active { transform: scale(0.96); }
+.btn-primary { background: var(--orange-500); color: #fff; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.4); }
+.btn-primary:hover { background: var(--orange-600); transform: translateY(-2px); box-shadow: 0 15px 35px -5px rgba(249,115,22,0.5); }
+.btn-secondary { background: #fff; color: var(--slate-700); border: 2px solid var(--slate-200); border-radius: 9999px; }
+.btn-secondary:hover { border-color: var(--orange-400); color: var(--orange-600); }
+.btn-small { font-size: 0.8125rem; padding: 10px 20px; box-shadow: none; }
 
-/* === Recipe Page === */
-.recipe-page { min-height: 100vh; background: var(--slate-50); }
+/* === Recipe Page Layout === */
+.recipe-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 40px; }
 
 /* === Smart App Banner === */
 .app-banner {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--slate-100);
+  position: sticky; top: 0; z-index: 50; width: 100%;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
 }
-.app-banner-inner { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; max-width: 720px; margin: 0 auto; }
-.app-banner-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.app-banner-brand img { width: 40px; height: 40px; border-radius: 10px; }
+.app-banner-inner { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; max-width: 800px; margin: 0 auto; }
+.app-banner-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.app-banner-brand img { width: 44px; height: 44px; border-radius: 12px; }
 .app-banner-text { display: flex; flex-direction: column; }
-.app-banner-name { font-size: 0.9375rem; font-weight: 800; color: var(--slate-900); line-height: 1.2; }
-.app-banner-tagline { font-size: 0.75rem; color: var(--slate-500); font-weight: 500; line-height: 1.3; }
-.app-banner-btn { padding: 8px 18px; font-size: 0.8125rem; border-radius: 10px; white-space: nowrap; }
+.app-banner-name { font-size: 1rem; font-weight: 800; color: var(--slate-900); line-height: 1.1; }
+.app-banner-tagline { font-size: 0.75rem; color: var(--slate-500); font-weight: 500; margin-top: 2px; }
 
-/* === Hero Image === */
-.recipe-hero { position: relative; width: 100%; max-height: 400px; overflow: hidden; background: var(--slate-200); }
-.recipe-hero-img { width: 100%; height: 300px; object-fit: cover; display: block; }
-.recipe-hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(transparent, var(--slate-50)); pointer-events: none; }
-
-/* === Container === */
-.recipe-container { max-width: 720px; margin: 0 auto; padding: 0 20px 40px; }
+/* === Hero Container === */
+.recipe-container { max-width: 800px; width: 100%; padding: 24px; animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(20px); }
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
 
 /* === Content Card === */
-.recipe-content {
-  background: #fff; border-radius: 20px; padding: 28px 24px 32px;
-  margin-top: -32px; position: relative; z-index: 10;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.06);
+.recipe-card-wrapper {
+  background: #fff; border-radius: 48px; overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.5);
 }
-.recipe-content.no-hero { margin-top: 20px; }
 
-/* === Header === */
-.recipe-header { margin-bottom: 20px; }
-.recipe-title { font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 900; color: var(--slate-900); letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 10px; }
-.recipe-description { font-size: 1rem; color: var(--slate-500); line-height: 1.6; }
+/* === Hero Image === */
+.recipe-hero { position: relative; width: 100%; height: 350px; background: var(--slate-100); overflow: hidden; }
+.recipe-hero-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.recipe-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4) 100%); pointer-events: none; }
 
-/* === Badges === */
-.recipe-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.recipe-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: var(--frigo-50); color: var(--frigo-700); border-radius: 100px; font-size: 0.8125rem; font-weight: 600; white-space: nowrap; }
-.recipe-badge svg { color: var(--frigo-400); flex-shrink: 0; }
+/* === Content Body === */
+.recipe-content { padding: 40px 48px 60px; }
+.recipe-content.no-hero { padding-top: 48px; }
 
-/* === Divider === */
-.recipe-divider { width: 40px; height: 3px; background: linear-gradient(135deg, var(--frigo-400), var(--frigo-500)); border-radius: 2px; margin-bottom: 28px; }
+/* === Header & Meta === */
+.recipe-meta { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; color: var(--slate-500); }
+.recipe-meta-item { display: flex; align-items: center; gap: 6px; }
+.recipe-meta-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+.recipe-meta-item.calories { color: var(--orange-500); }
+
+.recipe-header { margin-bottom: 32px; }
+.recipe-title { font-size: clamp(2rem, 5vw, 2.75rem); color: var(--slate-900); line-height: 1.1; margin-bottom: 8px; }
+.recipe-description { font-size: 1.125rem; color: var(--slate-500); font-weight: 500; }
 
 /* === Sections === */
-.recipe-section { margin-bottom: 32px; }
+.recipe-section { margin-bottom: 40px; }
 .recipe-section:last-child { margin-bottom: 0; }
-.recipe-section-title { display: flex; align-items: center; gap: 8px; font-size: 1.125rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.01em; margin-bottom: 16px; }
-.recipe-section-title svg { color: var(--frigo-500); flex-shrink: 0; }
+.recipe-section-title {
+  display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 800;
+  color: var(--slate-900); margin-bottom: 20px;
+}
+.recipe-section-title svg { color: var(--slate-900); width: 18px; height: 18px; }
 
-/* === Ingredients === */
-.ingredients-list { list-style: none; display: flex; flex-direction: column; }
-.ingredient-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--slate-100); font-size: 0.9375rem; color: var(--slate-700); line-height: 1.5; }
-.ingredient-item:last-child { border-bottom: none; }
-.ingredient-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--frigo-400); flex-shrink: 0; margin-top: 7px; }
+/* === Ingredients List (Pill Style) === */
+.ingredients-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.ingredient-item {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.875rem; color: var(--slate-600); font-weight: 500;
+  background: var(--slate-50); padding: 14px 20px;
+  border-radius: 16px; border: 1px solid rgba(226, 232, 240, 0.6);
+}
+.ingredient-name { color: var(--slate-800); font-weight: 600; }
 
 /* === Steps === */
-.steps-list { list-style: none; display: flex; flex-direction: column; gap: 20px; }
-.step-item { display: flex; gap: 14px; align-items: flex-start; }
-.step-number { width: 28px; height: 28px; min-width: 28px; background: var(--frigo-500); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8125rem; font-weight: 800; margin-top: 1px; }
-.step-text { font-size: 0.9375rem; color: var(--slate-600); line-height: 1.7; flex: 1; }
-.step-timer { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: var(--frigo-600); background: var(--frigo-50); padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
+.steps-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+.step-item { display: flex; gap: 16px; align-items: flex-start; }
+.step-number {
+  width: 26px; height: 26px; min-width: 26px; background: var(--orange-500); color: #fff;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 900; margin-top: 2px;
+}
+.step-text { font-size: 0.9375rem; color: var(--slate-600); line-height: 1.8; flex: 1; }
+.step-timer {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 700;
+  color: var(--slate-500); background: var(--slate-100); padding: 4px 12px;
+  border-radius: 999px; margin-left: 8px; vertical-align: middle; white-space: nowrap;
+}
+.step-timer svg { width: 12px; height: 12px; fill: currentColor; }
 
-/* === Chef Tip === */
-.chef-tip-card { background: linear-gradient(135deg, var(--frigo-50), #fff7ed); border: 1px solid var(--frigo-100); border-radius: 16px; padding: 20px; }
-.chef-tip-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.chef-tip-icon { width: 32px; height: 32px; background: var(--frigo-500); color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.chef-tip-header h3 { font-size: 0.9375rem; font-weight: 800; color: var(--frigo-800); letter-spacing: -0.01em; }
-.chef-tip-text { font-size: 0.9375rem; color: var(--frigo-700); line-height: 1.6; font-style: italic; }
+/* === Chef Tip (Yellow) === */
+.chef-tip-card {
+  background: var(--yellow-50); border: 1px solid var(--yellow-100);
+  border-radius: 24px; padding: 24px; display: flex; gap: 16px; align-items: flex-start;
+}
+.chef-tip-icon { color: var(--yellow-500); flex-shrink: 0; margin-top: 2px; }
+.chef-tip-content h3 { font-size: 0.75rem; font-weight: 800; color: var(--yellow-800); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+.chef-tip-text { font-size: 0.875rem; color: rgba(161, 98, 7, 0.8); line-height: 1.6; font-style: italic; }
 
 /* === Macros === */
 .macros-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.macro-card { background: var(--slate-50); border: 1px solid var(--slate-100); border-radius: 14px; padding: 16px 12px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
+.macro-card { background: var(--slate-50); border: 1px solid rgba(226, 232, 240, 0.6); border-radius: 16px; padding: 16px 12px; text-align: center; display: flex; flex-direction: column; gap: 4px; }
 .macro-value { font-size: 1.25rem; font-weight: 800; color: var(--slate-900); }
 .macro-label { font-size: 0.75rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; letter-spacing: 0.04em; }
 
-/* === Footer CTA === */
-.recipe-cta { margin-top: 32px; }
+/* === CTA Footer === */
+.recipe-cta { margin-top: 48px; }
 .recipe-cta-card {
-  background: linear-gradient(135deg, var(--slate-900), var(--slate-800));
-  border-radius: 24px; padding: 40px 28px; text-align: center; position: relative; overflow: hidden;
+  background: var(--slate-900); border-radius: 32px; padding: 48px 32px;
+  text-align: center; position: relative; overflow: hidden; color: #fff;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
 }
-.recipe-cta-card::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(249,115,22,0.15), transparent 70%); pointer-events: none; }
-.recipe-cta-logo { margin: 0 auto 16px; border-radius: 12px; position: relative; z-index: 1; }
-.recipe-cta-title { font-size: clamp(1.25rem, 3vw, 1.5rem); font-weight: 800; color: #fff; margin-bottom: 4px; letter-spacing: -0.01em; position: relative; z-index: 1; }
-.recipe-cta-subtitle { font-size: 1rem; font-weight: 600; color: var(--frigo-400); margin-bottom: 12px; position: relative; z-index: 1; }
-.recipe-cta-text { font-size: 0.9375rem; color: var(--slate-400); line-height: 1.6; margin-bottom: 24px; max-width: 420px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
-.recipe-cta-buttons { position: relative; z-index: 1; margin-bottom: 12px; }
-.recipe-cta-buttons .btn { padding: 14px 28px; font-size: 1rem; }
-.recipe-cta-free { font-size: 0.8125rem; color: var(--slate-500); position: relative; z-index: 1; }
+.recipe-cta-logo { width: 56px; height: 56px; margin: 0 auto 20px; border-radius: 16px; }
+.recipe-cta-title { font-size: 1.75rem; font-weight: 900; margin-bottom: 8px; letter-spacing: -0.02em; }
+.recipe-cta-subtitle { font-size: 1.125rem; font-weight: 600; color: var(--orange-400); margin-bottom: 16px; }
+.recipe-cta-text { font-size: 1rem; color: var(--slate-400); line-height: 1.6; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+.recipe-cta-buttons .btn { width: 100%; max-width: 320px; }
+.recipe-cta-free { font-size: 0.8125rem; color: var(--slate-500); margin-top: 16px; font-weight: 500; }
 
 /* === Mini Footer === */
-.recipe-footer { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; margin-top: 32px; border-top: 1px solid var(--slate-200); }
-.recipe-footer-brand { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-.recipe-footer-brand img { width: 24px; height: 24px; border-radius: 6px; }
-.recipe-footer-brand span { font-size: 0.875rem; font-weight: 700; color: var(--slate-600); }
-.recipe-footer-links { display: flex; gap: 16px; }
-.recipe-footer-links a { font-size: 0.75rem; color: var(--slate-400); text-decoration: none; transition: color 0.2s; }
-.recipe-footer-links a:hover { color: var(--frigo-500); }
+.recipe-footer { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 32px 0; margin-top: 16px; }
+.recipe-footer a { font-size: 0.8125rem; font-weight: 600; color: var(--slate-400); text-decoration: none; transition: color 0.2s; }
+.recipe-footer a:hover { color: var(--slate-900); }
 
 /* === Empty / Expired State === */
 .recipe-page-empty { display: flex; align-items: center; justify-content: center; padding: 24px; }
-.recipe-empty-card { text-align: center; max-width: 440px; background: #fff; border-radius: 24px; padding: 48px 32px; box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 20px 60px rgba(0,0,0,0.06); }
-.recipe-empty-icon { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--frigo-50), var(--frigo-100)); color: var(--frigo-500); border-radius: 20px; margin: 0 auto 24px; }
+.recipe-empty-card { text-align: center; max-width: 440px; background: #fff; border-radius: 32px; padding: 48px 32px; box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.5); }
+.recipe-empty-icon { width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; background: var(--orange-50); color: var(--orange-500); border-radius: 20px; margin: 0 auto 24px; }
 .recipe-empty-title { font-size: 1.5rem; font-weight: 800; color: var(--slate-900); letter-spacing: -0.02em; margin-bottom: 12px; }
 .recipe-empty-text { font-size: 0.9375rem; color: var(--slate-500); line-height: 1.6; margin-bottom: 28px; }
 .recipe-empty-cta { display: flex; flex-direction: column; gap: 12px; align-items: center; }
 .recipe-empty-cta .btn { width: 100%; max-width: 300px; }
 
 /* === Responsive === */
-@media (max-width: 480px) {
-  .recipe-container { padding: 0 16px 32px; }
-  .recipe-content { padding: 24px 20px 28px; border-radius: 16px; }
-  .recipe-cta-card { padding: 32px 20px; border-radius: 20px; }
-  .recipe-empty-card { padding: 36px 24px; border-radius: 20px; }
-  .recipe-footer { flex-direction: column; gap: 12px; text-align: center; }
-  .macros-grid { gap: 8px; }
-  .macro-card { padding: 12px 8px; }
-  .macro-value { font-size: 1.0625rem; }
-}
-
-@media (min-width: 768px) {
-  .recipe-hero-img { height: 400px; }
-  .recipe-container { padding: 0 32px 60px; }
-  .recipe-content { margin-top: -48px; padding: 40px 48px 48px; border-radius: 24px; }
-  .recipe-content.no-hero { margin-top: 20px; }
-  .macros-grid { gap: 16px; }
-  .macro-card { padding: 20px 16px; }
+@media (max-width: 640px) {
+  .recipe-container { padding: 16px; }
+  .recipe-card-wrapper { border-radius: 32px; }
+  .recipe-hero { height: 280px; }
+  .recipe-content { padding: 32px 24px 40px; }
+  .recipe-meta { gap: 12px; }
+  .recipe-cta-card { padding: 40px 24px; border-radius: 28px; }
+  .step-timer { display: block; margin-left: 0; margin-top: 8px; width: fit-content; }
+  .recipe-empty-card { padding: 36px 24px; border-radius: 24px; }
 }
 
 /* === Reduced Motion === */
