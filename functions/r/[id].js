@@ -113,7 +113,7 @@ const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.jaco3n4
 function renderRecipe(id, recipe) {
   const totalTime = [recipe.prep_time, recipe.cook_time].filter(Boolean).join(' + ');
   const ingredientCount = recipe.ingredients?.length || 0;
-  const ogDescription = `${esc(recipe.title)} — ${totalTime ? totalTime + ' \u00b7 ' : ''}${ingredientCount} ingredients \u00b7 ${recipe.difficulty}. Decouverte sur DisChef.`;
+  const ogDescription = `${esc(recipe.title)} — ${totalTime ? totalTime + ' \u00b7 ' : ''}${ingredientCount} ingrédients \u00b7 ${recipe.difficulty}. Découverte sur DisChef.`;
   const ogImage = recipe.image_url || 'https://dischef.fr/images/og-default.png';
   const pageTitle = `${esc(recipe.title)} — Recette DisChef`;
   const canonicalUrl = `https://dischef.fr/r/${id}`;
@@ -123,16 +123,20 @@ function renderRecipe(id, recipe) {
     '@context': 'https://schema.org',
     '@type': 'Recipe',
     name: recipe.title,
-    description: recipe.description || `Recette ${recipe.title} sur DisChef`,
+    description: recipe.description || `Recette « ${recipe.title} » sur DisChef`,
     image: recipe.image_url || undefined,
     prepTime: recipe.prep_time ? `PT${recipe.prep_time.replace(/\D/g, '')}M` : undefined,
     cookTime: recipe.cook_time ? `PT${recipe.cook_time.replace(/\D/g, '')}M` : undefined,
     recipeYield: `${recipe.servings} portions`,
-    recipeIngredient: recipe.ingredients,
+    recipeIngredient: recipe.ingredients.map(ing =>
+      typeof ing === 'string' ? ing : ing && ing.name
+        ? `${ing.name}${ing.quantity ? ' ' + ing.quantity + (ing.unit ? ' ' + ing.unit : '') : ''}`
+        : String(ing)
+    ),
     recipeInstructions: recipe.steps.map((step, i) => ({
       '@type': 'HowToStep',
       position: i + 1,
-      text: step,
+      text: typeof step === 'string' ? step : step && step.instruction ? step.instruction : String(step),
     })),
     nutrition: recipe.calories_per_serving > 0 ? {
       '@type': 'NutritionInformation',
@@ -182,14 +186,19 @@ function renderRecipe(id, recipe) {
   // Build ingredients HTML
   let ingredientsHtml = '';
   if (recipe.ingredients.length > 0) {
-    const items = recipe.ingredients.map(ing =>
-      `<li class="ingredient-item"><span class="ingredient-dot"></span><span>${esc(ing)}</span></li>`
-    ).join('');
+    const items = recipe.ingredients.map(ing => {
+      const label = typeof ing === 'string'
+        ? esc(ing)
+        : ing && ing.name
+          ? `${esc(ing.name)}${ing.quantity ? ' — ' + ing.quantity + (ing.unit ? ' ' + esc(ing.unit) : '') : ''}`
+          : esc(String(ing));
+      return `<li class="ingredient-item"><span class="ingredient-dot"></span><span>${label}</span></li>`;
+    }).join('');
     ingredientsHtml = `
       <section class="recipe-section">
         <h2 class="recipe-section-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
-          Ingredients
+          Ingrédients
         </h2>
         <ul class="ingredients-list">${items}</ul>
       </section>`;
@@ -198,14 +207,22 @@ function renderRecipe(id, recipe) {
   // Build steps HTML
   let stepsHtml = '';
   if (recipe.steps.length > 0) {
-    const items = recipe.steps.map((step, i) =>
-      `<li class="step-item"><div class="step-number">${i + 1}</div><p class="step-text">${esc(step)}</p></li>`
-    ).join('');
+    const items = recipe.steps.map((step, i) => {
+      const text = typeof step === 'string'
+        ? esc(step)
+        : step && step.instruction
+          ? esc(step.instruction)
+          : esc(String(step));
+      const timerHtml = (step && step.timer_seconds && step.timer_seconds > 0)
+        ? ` <span class="step-timer">${Math.round(step.timer_seconds / 60)} min</span>`
+        : '';
+      return `<li class="step-item"><div class="step-number">${i + 1}</div><p class="step-text">${text}${timerHtml}</p></li>`;
+    }).join('');
     stepsHtml = `
       <section class="recipe-section">
         <h2 class="recipe-section-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          Preparation
+          Préparation
         </h2>
         <ol class="steps-list">${items}</ol>
       </section>`;
@@ -233,7 +250,7 @@ function renderRecipe(id, recipe) {
   if (recipe.protein || recipe.carbs || recipe.fat) {
     let macroCards = '';
     if (recipe.protein !== null) {
-      macroCards += `<div class="macro-card"><span class="macro-value">${recipe.protein}g</span><span class="macro-label">Proteines</span></div>`;
+      macroCards += `<div class="macro-card"><span class="macro-value">${recipe.protein}g</span><span class="macro-label">Protéines</span></div>`;
     }
     if (recipe.carbs !== null) {
       macroCards += `<div class="macro-card"><span class="macro-value">${recipe.carbs}g</span><span class="macro-label">Glucides</span></div>`;
@@ -321,7 +338,7 @@ function renderRecipe(id, recipe) {
             <span class="app-banner-tagline">Votre frigo a du talent.</span>
           </div>
         </a>
-        <a href="${IOS_STORE}" class="btn btn-primary btn-small app-banner-btn" id="banner-cta">Decouvrir DisChef</a>
+        <a href="${IOS_STORE}" class="btn btn-primary btn-small app-banner-btn" id="banner-cta">Découvrir DisChef</a>
       </div>
     </div>
 
@@ -353,7 +370,7 @@ function renderRecipe(id, recipe) {
           <div class="recipe-cta-buttons">
             <a href="${IOS_STORE}" class="btn btn-primary" id="cta-store-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              Telecharger gratuitement
+              Télécharger gratuitement
             </a>
           </div>
           <p class="recipe-cta-free">Gratuit — Pas de carte bancaire requise</p>
@@ -367,8 +384,8 @@ function renderRecipe(id, recipe) {
           <span>DisChef</span>
         </a>
         <div class="recipe-footer-links">
-          <a href="/mentions-legales">Mentions legales</a>
-          <a href="/confidentialite">Confidentialite</a>
+          <a href="/mentions-legales">Mentions légales</a>
+          <a href="/confidentialite">Confidentialité</a>
         </div>
       </footer>
     </div>
@@ -400,10 +417,10 @@ function renderRecipe(id, recipe) {
 // ──────────────────────────────────────────
 
 function renderError(isExpired) {
-  const title = isExpired ? 'Cette recette a expire' : 'Recette introuvable';
+  const title = isExpired ? 'Cette recette a expiré' : 'Recette introuvable';
   const subtitle = isExpired
-    ? 'Les liens de partage sont valables 30 jours. Telechargez DisChef pour des recettes illimitees.'
-    : 'Ce lien ne mene nulle part. La recette a peut-etre ete supprimee ou le lien est incorrect.';
+    ? 'Les liens de partage sont valables 30 jours. Téléchargez DisChef pour des recettes illimitées.'
+    : 'Ce lien ne mène nulle part. La recette a peut-être été supprimée ou le lien est incorrect.';
 
   const html = `<!DOCTYPE html>
 <html lang="fr">
@@ -437,9 +454,9 @@ function renderError(isExpired) {
       <div class="recipe-empty-cta">
         <a href="${IOS_STORE}" class="btn btn-primary" id="empty-store-btn">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-          Decouvrir DisChef
+          Découvrir DisChef
         </a>
-        <a href="https://dischef.fr" class="btn btn-secondary">Retour a l'accueil</a>
+        <a href="https://dischef.fr" class="btn btn-secondary">Retour à l'accueil</a>
       </div>
     </div>
   </div>
@@ -575,6 +592,7 @@ a { color: inherit; text-decoration: none; }
 .step-item { display: flex; gap: 14px; align-items: flex-start; }
 .step-number { width: 28px; height: 28px; min-width: 28px; background: var(--frigo-500); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8125rem; font-weight: 800; margin-top: 1px; }
 .step-text { font-size: 0.9375rem; color: var(--slate-600); line-height: 1.7; flex: 1; }
+.step-timer { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; font-weight: 600; color: var(--frigo-600); background: var(--frigo-50); padding: 2px 8px; border-radius: 6px; margin-left: 6px; vertical-align: middle; }
 
 /* === Chef Tip === */
 .chef-tip-card { background: linear-gradient(135deg, var(--frigo-50), #fff7ed); border: 1px solid var(--frigo-100); border-radius: 16px; padding: 20px; }
