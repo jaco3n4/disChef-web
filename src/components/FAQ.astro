@@ -1,0 +1,186 @@
+---
+const faqs = [
+  {
+    question: "C'est quoi DisChef ?",
+    answer: "DisChef est une application cuisine propulsée par l'IA. Vous lui dites ce que vous avez dans votre frigo, et Le Chef — votre IA culinaire personnelle — compose des recettes sur mesure, adaptées à vos goûts, votre budget et votre temps.",
+  },
+  {
+    question: "Comment fonctionne la commande vocale ?",
+    answer: "Dites simplement « Dis Chef » suivi de votre demande : ajouter des ingrédients, générer des recettes, planifier la semaine... Le Chef comprend le langage naturel et répond même quand vous avez les mains dans la pâte.",
+  },
+  {
+    question: "C'est gratuit ?",
+    answer: "Oui, DisChef est gratuit. Pas de carte bancaire requise, pas de période d'essai. Téléchargez et commencez à cuisiner immédiatement.",
+  },
+  {
+    question: "Comment DisChef aide à réduire le gaspillage alimentaire ?",
+    answer: "Le Chef priorise automatiquement les ingrédients qui vont périmer. Il vous propose des recettes avec ce que vous avez déjà, génère un planning qui optimise vos achats, et vous alerte 3 jours avant la péremption de vos produits.",
+  },
+  {
+    question: "Sur quels appareils fonctionne DisChef ?",
+    answer: "DisChef est disponible gratuitement sur iPhone (iOS 16+) via l'App Store et sur Android via Google Play.",
+  },
+  {
+    question: "Mes données sont-elles protégées ?",
+    answer: "Vos données sont stockées de manière sécurisée sur Firebase (serveurs européens, Belgique). DisChef est conforme au RGPD. Aucun cookie publicitaire, aucune revente de données.",
+  },
+];
+
+// JSON-LD for FAQ Schema
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    }
+  }))
+};
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="section-header" data-animate>
+      <div class="badge badge-orange">Questions fréquentes</div>
+      <h2>Tout ce que vous voulez savoir</h2>
+      <p class="section-subtitle">
+        Vous hésitez encore ? Voici les réponses aux questions les plus posées.
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((faq, i) => (
+        <details class="faq-item" data-animate style={`animation-delay: ${i * 0.08}s`}>
+          <summary class="faq-question">
+            <span>{faq.question}</span>
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="faq-cta" data-animate>
+      <p>Vous avez encore des questions ?</p>
+      <a href="mailto:contact@dischef.fr" class="btn btn-secondary btn-small">
+        Nous écrire
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Schema.org JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .faq-section {
+    background: #ffffff;
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+
+  .section-header h2 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--slate-500);
+  }
+
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--slate-50);
+    border-radius: 16px;
+    border: 1px solid var(--slate-100);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+
+  .faq-item:hover {
+    border-color: var(--slate-200);
+  }
+
+  .faq-item[open] {
+    background: white;
+    border-color: var(--frigo-200);
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.06);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question span {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--slate-900);
+    line-height: 1.4;
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--slate-400);
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--frigo-500);
+  }
+
+  .faq-answer {
+    padding: 0 24px 20px;
+  }
+
+  .faq-answer p {
+    font-size: 1rem;
+    color: var(--slate-600);
+    line-height: 1.7;
+  }
+
+  .faq-cta {
+    text-align: center;
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq-cta p {
+    font-size: 1rem;
+    color: var(--slate-500);
+  }
+</style>

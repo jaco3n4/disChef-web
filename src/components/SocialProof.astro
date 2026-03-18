@@ -1,0 +1,232 @@
+---
+const stats = [
+  { value: '4.8', label: 'sur l\'App Store', icon: '⭐' },
+  { value: '10K+', label: 'recettes générées', icon: '🧑‍🍳' },
+  { value: '2T+', label: 'de gaspi évité', icon: '♻️' },
+  { value: '100%', label: 'gratuit', icon: '🎁' },
+];
+
+const testimonials = [
+  {
+    quote: "Je n'ai plus jamais jeté de nourriture depuis que j'utilise DisChef. Le Chef sait exactement quoi faire avec mes restes.",
+    name: 'Sophie M.',
+    role: 'Maman de 2 enfants',
+    avatar: '👩‍👧‍👦',
+  },
+  {
+    quote: "Le vocal change tout. Les mains dans la pâte, je dis juste « Dis Chef, étape suivante » et c'est parti.",
+    name: 'Thomas R.',
+    role: 'Cuisinier amateur',
+    avatar: '👨‍🍳',
+  },
+  {
+    quote: "Le planning de la semaine m'a sauvé la vie. 14 repas en 30 secondes, et la liste de courses se fait toute seule.",
+    name: 'Léa D.',
+    role: 'Étudiante',
+    avatar: '👩‍🎓',
+  },
+];
+---
+
+<section class="section social-proof">
+  <div class="container">
+    <!-- Stats bar -->
+    <div class="stats-bar" data-animate>
+      {stats.map((stat) => (
+        <div class="stat-item">
+          <span class="stat-icon">{stat.icon}</span>
+          <div class="stat-info">
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials-header" data-animate>
+      <div class="badge badge-orange">Ils cuisinent avec Le Chef</div>
+      <h2>Ce que disent nos utilisateurs</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      {testimonials.map((t, i) => (
+        <div class="testimonial-card" data-animate style={`animation-delay: ${i * 0.15}s`}>
+          <div class="testimonial-stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote class="testimonial-quote">
+            <span class="tq-mark">&laquo;</span>
+            {t.quote}
+          </blockquote>
+          <div class="testimonial-author">
+            <span class="testimonial-avatar">{t.avatar}</span>
+            <div>
+              <span class="testimonial-name">{t.name}</span>
+              <span class="testimonial-role">{t.role}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .social-proof {
+    background: var(--slate-50);
+    overflow: hidden;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 72px;
+  }
+
+  @media (min-width: 768px) {
+    .stats-bar {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    padding: 20px 24px;
+    border-radius: 20px;
+    border: 1px solid var(--slate-100);
+    transition: all 0.3s ease;
+  }
+
+  .stat-item:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .stat-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--slate-900);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--slate-500);
+  }
+
+  /* Testimonials header */
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .testimonials-header h2 {
+    margin-top: 16px;
+  }
+
+  /* Testimonials grid */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid var(--slate-100);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .testimonial-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+    transform: translateY(-4px);
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .testimonial-quote {
+    font-size: 1rem;
+    color: var(--slate-700);
+    line-height: 1.6;
+    flex: 1;
+    font-style: normal;
+  }
+
+  .tq-mark {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--frigo-300);
+    margin-right: 4px;
+    line-height: 1;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--slate-100);
+  }
+
+  .testimonial-avatar {
+    font-size: 2rem;
+    width: 44px;
+    height: 44px;
+    background: var(--slate-50);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .testimonial-name {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: var(--slate-900);
+  }
+
+  .testimonial-role {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--slate-500);
+  }
+</style>

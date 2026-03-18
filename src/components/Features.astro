@@ -5,46 +5,52 @@ const features = [
     title: 'Scannez votre frigo',
     description: 'Prenez une photo de vos ingrédients ou ajoutez-les vocalement. Le Chef sait ce que vous avez.',
     color: 'orange',
+    tag: 'Scan IA',
   },
   {
     icon: '🧑‍🍳',
     title: '3 recettes sur mesure',
     description: 'Le Chef vous propose La Débrouille (100% votre frigo), Le Coup de Cœur et L\'Aventure.',
     color: 'blue',
+    tag: 'Le Trio du Chef',
   },
   {
     icon: '📅',
     title: 'Planning de la semaine',
-    description: 'Composez 14 repas en un clic. Le Chef s\'adapte a vos gouts, votre budget et votre temps.',
+    description: 'Composez 14 repas en un clic. Le Chef s\'adapte à vos goûts, votre budget et votre temps.',
     color: 'purple',
+    tag: '14 repas',
   },
   {
     icon: '🛒',
     title: 'Liste de courses intelligente',
     description: 'Générée automatiquement, classée par rayon. Partagez-la et rangez vos courses dans le frigo.',
     color: 'green',
+    tag: 'Auto',
   },
   {
     icon: '🎙️',
     title: 'Mains sales ? Parlez.',
     description: 'DisChef est conçu pour la cuisine. Les mains dans la pâte, utilisez votre voix.',
     color: 'rose',
+    tag: 'Vocal First',
   },
   {
     icon: '♻️',
     title: 'Zéro gaspillage',
     description: 'Le Chef priorise les produits qui vont périmer. Chaque ingrédient mérite d\'être cuisiné.',
     color: 'emerald',
+    tag: 'Anti-gaspi',
   },
 ];
 
-const colorMap: Record<string, { bg: string; border: string }> = {
-  orange: { bg: '#fff7ed', border: '#fed7aa' },
-  blue: { bg: '#eff6ff', border: '#bfdbfe' },
-  purple: { bg: '#faf5ff', border: '#e9d5ff' },
-  green: { bg: '#f0fdf4', border: '#bbf7d0' },
-  rose: { bg: '#fff1f2', border: '#fecdd3' },
-  emerald: { bg: '#ecfdf5', border: '#a7f3d0' },
+const colorMap: Record<string, { bg: string; border: string; tag: string }> = {
+  orange: { bg: '#fff7ed', border: '#fed7aa', tag: '#ea580c' },
+  blue: { bg: '#eff6ff', border: '#bfdbfe', tag: '#2563eb' },
+  purple: { bg: '#faf5ff', border: '#e9d5ff', tag: '#7c3aed' },
+  green: { bg: '#f0fdf4', border: '#bbf7d0', tag: '#16a34a' },
+  rose: { bg: '#fff1f2', border: '#fecdd3', tag: '#e11d48' },
+  emerald: { bg: '#ecfdf5', border: '#a7f3d0', tag: '#059669' },
 };
 ---
 
@@ -52,7 +58,7 @@ const colorMap: Record<string, { bg: string; border: string }> = {
   <div class="container">
     <div class="section-header" data-animate>
       <div class="badge badge-orange">Fonctionnalités</div>
-      <h2>Tout ce dont vous avez besoin pour cuisiner malin</h2>
+      <h2>Tout ce dont vous avez besoin<br />pour cuisiner malin</h2>
       <p class="section-subtitle">
         DisChef combine intelligence artificielle et simplicité pour transformer votre quotidien en cuisine.
       </p>
@@ -63,11 +69,15 @@ const colorMap: Record<string, { bg: string; border: string }> = {
         <div
           class="card feature-card"
           data-animate
-          style={`animation-delay: ${i * 0.1}s; --card-bg: ${colorMap[feature.color].bg}; --card-border: ${colorMap[feature.color].border};`}
+          style={`animation-delay: ${i * 0.1}s; --card-bg: ${colorMap[feature.color].bg}; --card-border: ${colorMap[feature.color].border}; --card-tag: ${colorMap[feature.color].tag};`}
         >
-          <div class="feature-icon">{feature.icon}</div>
+          <div class="feature-top">
+            <div class="feature-icon">{feature.icon}</div>
+            <span class="feature-tag">{feature.tag}</span>
+          </div>
           <h3>{feature.title}</h3>
           <p>{feature.description}</p>
+          <div class="feature-shine"></div>
         </div>
       ))}
     </div>
@@ -112,11 +122,20 @@ const colorMap: Record<string, { bg: string; border: string }> = {
   .feature-card {
     text-align: left;
     padding: 28px;
+    position: relative;
+    overflow: hidden;
   }
 
   .feature-card:hover {
     border-color: var(--card-border);
     background: var(--card-bg);
+  }
+
+  .feature-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
   }
 
   .feature-icon {
@@ -128,7 +147,17 @@ const colorMap: Record<string, { bg: string; border: string }> = {
     font-size: 1.75rem;
     background: var(--card-bg);
     border-radius: 14px;
-    margin-bottom: 16px;
+  }
+
+  .feature-tag {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--card-tag);
+    background: var(--card-bg);
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
 
   .feature-card h3 {
@@ -141,5 +170,21 @@ const colorMap: Record<string, { bg: string; border: string }> = {
     font-size: 0.9375rem;
     color: var(--slate-500);
     line-height: 1.6;
+  }
+
+  /* Subtle shine effect on hover */
+  .feature-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+
+  .feature-card:hover .feature-shine {
+    left: 120%;
   }
 </style>

@@ -1,0 +1,133 @@
+---
+---
+
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card" data-animate>
+      <div class="newsletter-content">
+        <div class="badge badge-orange">Restez informé</div>
+        <h3>Recettes anti-gaspi, astuces du Chef et nouveautés</h3>
+        <p>Rejoignez la communauté DisChef. Un email par semaine, pas de spam.</p>
+
+        <form class="newsletter-form" id="newsletter-form">
+          <div class="newsletter-input-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="newsletter-icon">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+            <input
+              type="email"
+              placeholder="votre@email.fr"
+              required
+              class="newsletter-input"
+              aria-label="Votre adresse email"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-small newsletter-btn">
+            S'inscrire
+          </button>
+        </form>
+
+        <p class="newsletter-privacy">
+          Vos données restent chez nous. Désinscription en un clic.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .newsletter-section {
+    padding: 0 0 80px;
+  }
+
+  @media (min-width: 768px) {
+    .newsletter-section {
+      padding: 0 0 120px;
+    }
+  }
+
+  .newsletter-card {
+    background: linear-gradient(135deg, var(--frigo-50), #fff7ed);
+    border: 1px solid var(--frigo-100);
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .newsletter-content h3 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    margin-top: 16px;
+    margin-bottom: 8px;
+    color: var(--slate-900);
+  }
+
+  .newsletter-content > p {
+    font-size: 1rem;
+    color: var(--slate-500);
+    margin-bottom: 24px;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (min-width: 480px) {
+    .newsletter-form {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .newsletter-input-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .newsletter-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--slate-400);
+    pointer-events: none;
+  }
+
+  .newsletter-input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 2px solid var(--slate-200);
+    border-radius: 12px;
+    background: white;
+    color: var(--slate-900);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-input:focus {
+    border-color: var(--frigo-400);
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--slate-400);
+  }
+
+  .newsletter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .newsletter-privacy {
+    font-size: 0.8125rem !important;
+    color: var(--slate-400) !important;
+  }
+</style>

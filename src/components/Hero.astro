@@ -2,10 +2,13 @@
 ---
 
 <section class="hero">
+  <div class="hero-bg-glow"></div>
+  <div class="hero-bg-glow-2"></div>
+
   <div class="container hero-inner">
     <div class="hero-content">
       <div class="badge badge-orange animate-fade-in-up">
-        <span>🍊</span> App cuisine IA anti-gaspi
+        <span class="badge-dot"></span> App cuisine IA anti-gaspi
       </div>
 
       <h1 class="hero-title animate-fade-in-up delay-100">
@@ -13,12 +16,12 @@
       </h1>
 
       <p class="hero-subtitle animate-fade-in-up delay-200">
-        DisChef analyse votre frigo et compose des recettes sur mesure.
-        Fini le gaspillage, place à la créativité.
+        Dites au Chef ce que vous avez, il compose des recettes sur mesure.
+        Fini le gaspillage, fini le "qu'est-ce qu'on mange ?".
       </p>
 
       <div class="hero-cta animate-fade-in-up delay-300">
-        <a href="#download" class="btn btn-primary btn-lg">
+        <a href="https://apps.apple.com/app/dischef/id6739498942" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
             <polyline points="7 10 12 15 17 10"/>
@@ -26,73 +29,166 @@
           </svg>
           Télécharger gratuitement
         </a>
-        <a href="#how-it-works" class="btn btn-secondary">
-          Découvrir
+        <a href="#voice-demo" class="btn btn-secondary">
+          Voir la magie
         </a>
       </div>
 
-      <div class="hero-stats animate-fade-in-up delay-400">
-        <div class="hero-stat">
-          <span class="hero-stat-icon">🧑‍🍳</span>
-          <span class="hero-stat-text">IA Chef personnel</span>
+      <div class="hero-trust animate-fade-in-up delay-400">
+        <div class="hero-stars">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#f97316"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-icon">🎙️</span>
-          <span class="hero-stat-text">100% vocal</span>
-        </div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat">
-          <span class="hero-stat-icon">♻️</span>
-          <span class="hero-stat-text">Anti-gaspi</span>
-        </div>
+        <span class="hero-trust-text">Gratuit sur iOS et Android</span>
       </div>
     </div>
 
     <div class="hero-visual animate-fade-in delay-200">
       <div class="hero-phone">
         <div class="hero-phone-screen">
-          <div class="phone-mockup-header">
+          <!-- Phone status bar -->
+          <div class="phone-status-bar">
+            <span class="phone-time">9:41</span>
             <div class="phone-notch"></div>
+            <div class="phone-status-icons">
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="white"><rect x="0" y="3" width="3" height="9" rx="1" opacity="0.4"/><rect x="4.5" y="2" width="3" height="10" rx="1" opacity="0.6"/><rect x="9" y="0" width="3" height="12" rx="1" opacity="0.8"/><rect x="13.5" y="0" width="2.5" height="12" rx="1"/></svg>
+            </div>
           </div>
-          <div class="phone-mockup-content">
-            <div class="phone-greeting">Bonjour, Chef !</div>
-            <div class="phone-question">Qu'est-ce qu'on mange ?</div>
-            <div class="phone-cards">
-              <div class="phone-card phone-card-green">
-                <span class="phone-card-badge">100% DISPO</span>
-                <span class="phone-card-name">La Débrouille</span>
+
+          <!-- App content - animated conversation -->
+          <div class="phone-app">
+            <div class="phone-app-header">
+              <img src="/images/logo.svg" alt="" width="28" height="28" class="phone-logo" />
+              <span class="phone-app-title">DisChef</span>
+            </div>
+
+            <div class="phone-chat">
+              <!-- User voice message -->
+              <div class="chat-bubble chat-user chat-anim-1">
+                <div class="chat-voice-indicator">
+                  <div class="voice-wave"></div>
+                  <div class="voice-wave"></div>
+                  <div class="voice-wave"></div>
+                  <div class="voice-wave"></div>
+                  <div class="voice-wave"></div>
+                </div>
+                <span>"Dis Chef, qu'est-ce qu'on mange ?"</span>
               </div>
-              <div class="phone-card phone-card-orange">
-                <span class="phone-card-badge">CHOIX DU CHEF</span>
-                <span class="phone-card-name">Le Coup de Coeur</span>
+
+              <!-- Chef response -->
+              <div class="chat-bubble chat-chef chat-anim-2">
+                <div class="chat-chef-avatar">
+                  <img src="/images/logo.svg" alt="" width="20" height="20" />
+                </div>
+                <div class="chat-chef-content">
+                  <span class="chat-chef-name">Le Chef</span>
+                  <p>J'ai 3 idées avec vos tomates, mozzarella et basilic !</p>
+                </div>
               </div>
-              <div class="phone-card phone-card-dark">
-                <span class="phone-card-badge">SORTEZ DU CADRE</span>
-                <span class="phone-card-name">L'Aventure</span>
+
+              <!-- Recipe cards -->
+              <div class="phone-recipes chat-anim-3">
+                <div class="phone-recipe-card recipe-green">
+                  <div class="recipe-badge-wrap">
+                    <span class="recipe-badge">100% DISPO</span>
+                  </div>
+                  <span class="recipe-name">La Débrouille</span>
+                  <span class="recipe-meta">15 min · Facile</span>
+                </div>
+                <div class="phone-recipe-card recipe-orange">
+                  <div class="recipe-badge-wrap">
+                    <span class="recipe-badge">CHOIX DU CHEF</span>
+                  </div>
+                  <span class="recipe-name">Le Coup de Cœur</span>
+                  <span class="recipe-meta">25 min · Moyen</span>
+                </div>
+                <div class="phone-recipe-card recipe-dark">
+                  <div class="recipe-badge-wrap">
+                    <span class="recipe-badge">SORTEZ DU CADRE</span>
+                  </div>
+                  <span class="recipe-name">L'Aventure</span>
+                  <span class="recipe-meta">40 min · Chef</span>
+                </div>
               </div>
+            </div>
+
+            <!-- Floating mic button -->
+            <div class="phone-mic-btn chat-anim-4">
+              <div class="mic-pulse"></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" x2="12" y1="19" y2="22"/>
+              </svg>
             </div>
           </div>
         </div>
       </div>
-      <div class="hero-glow"></div>
+
+      <!-- Floating elements -->
+      <div class="hero-float hero-float-1">
+        <span>🍅</span>
+      </div>
+      <div class="hero-float hero-float-2">
+        <span>🧀</span>
+      </div>
+      <div class="hero-float hero-float-3">
+        <span>🌿</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll-indicator animate-fade-in delay-400">
+    <div class="scroll-mouse">
+      <div class="scroll-dot"></div>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-top: calc(var(--header-height) + 48px);
-    padding-bottom: 80px;
+    padding-top: calc(var(--header-height) + 40px);
+    padding-bottom: 60px;
     overflow: hidden;
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding-top: calc(var(--header-height) + 80px);
-      padding-bottom: 120px;
+      padding-top: calc(var(--header-height) + 60px);
+      padding-bottom: 80px;
     }
+  }
+
+  /* Background glows */
+  .hero-bg-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.08), transparent 70%);
+    top: -100px;
+    right: -200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-bg-glow-2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.05), transparent 70%);
+    bottom: -100px;
+    left: -200px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .hero-inner {
@@ -100,6 +196,8 @@
     flex-direction: column;
     align-items: center;
     gap: 48px;
+    position: relative;
+    z-index: 1;
   }
 
   @media (min-width: 768px) {
@@ -119,6 +217,20 @@
     .hero-content {
       text-align: left;
     }
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--frigo-500);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
   }
 
   .hero-title {
@@ -144,7 +256,7 @@
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
   }
 
   @media (min-width: 768px) {
@@ -158,43 +270,35 @@
     font-size: 1.125rem;
   }
 
-  .hero-stats {
+  /* Trust bar */
+  .hero-trust {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
   }
 
   @media (min-width: 768px) {
-    .hero-stats {
+    .hero-trust {
       justify-content: flex-start;
     }
   }
 
-  .hero-stat {
+  .hero-stars {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    gap: 2px;
   }
 
-  .hero-stat-icon {
-    font-size: 1.25rem;
-  }
-
-  .hero-stat-text {
+  .hero-trust-text {
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--slate-500);
   }
 
-  .hero-stat-divider {
-    width: 1px;
-    height: 20px;
-    background: var(--slate-200);
-  }
-
-  /* Phone mockup */
+  /* =================== */
+  /* Phone mockup — premium */
+  /* =================== */
   .hero-visual {
     position: relative;
     flex-shrink: 0;
@@ -202,11 +306,14 @@
 
   .hero-phone {
     width: 280px;
-    height: 560px;
-    background: #000;
-    border-radius: 40px;
-    padding: 12px;
-    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+    height: 580px;
+    background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+    border-radius: 44px;
+    padding: 10px;
+    box-shadow:
+      0 50px 100px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 2;
   }
@@ -214,7 +321,7 @@
   @media (min-width: 768px) {
     .hero-phone {
       width: 320px;
-      height: 640px;
+      height: 660px;
     }
   }
 
@@ -222,101 +329,375 @@
     width: 100%;
     height: 100%;
     background: #f8fafc;
-    border-radius: 30px;
+    border-radius: 36px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
-  .phone-mockup-header {
+  /* Status bar */
+  .phone-status-bar {
     display: flex;
-    justify-content: center;
-    padding: 12px 0 8px;
-    background: #ffffff;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 8px;
+    background: var(--frigo-500);
+    position: relative;
+  }
+
+  .phone-time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
   }
 
   .phone-notch {
-    width: 120px;
-    height: 28px;
-    background: #000;
-    border-radius: 14px;
+    width: 100px;
+    height: 26px;
+    background: #0f0f1a;
+    border-radius: 13px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .phone-mockup-content {
-    padding: 24px 20px;
+  .phone-status-icons {
+    opacity: 0.9;
+  }
+
+  /* App content */
+  .phone-app {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
   }
 
-  .phone-greeting {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--slate-400);
-    margin-bottom: 4px;
+  .phone-app-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px 10px;
+    background: white;
+    border-bottom: 1px solid var(--slate-100);
   }
 
-  .phone-question {
-    font-size: 1.5rem;
+  .phone-logo {
+    border-radius: 6px;
+  }
+
+  .phone-app-title {
+    font-size: 0.9375rem;
     font-weight: 800;
     color: var(--slate-900);
-    margin-bottom: 24px;
+    letter-spacing: -0.01em;
   }
 
-  .phone-cards {
+  /* Chat area */
+  .phone-chat {
+    flex: 1;
+    padding: 14px 14px 60px;
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .chat-bubble {
+    border-radius: 18px;
+    padding: 12px 16px;
+    max-width: 95%;
+    animation: chatSlideIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .chat-user {
+    background: var(--frigo-500);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+  }
+
+  .chat-user span {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .chat-voice-indicator {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .voice-wave {
+    width: 3px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    animation: voiceWave 1s ease-in-out infinite;
+  }
+
+  .voice-wave:nth-child(1) { animation-delay: 0s; height: 8px; }
+  .voice-wave:nth-child(2) { animation-delay: 0.1s; height: 14px; }
+  .voice-wave:nth-child(3) { animation-delay: 0.2s; height: 10px; }
+  .voice-wave:nth-child(4) { animation-delay: 0.3s; height: 16px; }
+  .voice-wave:nth-child(5) { animation-delay: 0.4s; height: 8px; }
+
+  @keyframes voiceWave {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+  }
+
+  .chat-chef {
+    background: white;
+    border: 1px solid var(--slate-100);
+    align-self: flex-start;
+    border-bottom-left-radius: 6px;
+    display: flex;
     gap: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 
-  .phone-card {
-    border-radius: 16px;
-    padding: 16px;
+  .chat-chef-avatar {
+    width: 28px;
+    height: 28px;
+    background: var(--frigo-500);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .chat-chef-avatar img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+  }
+
+  .chat-chef-name {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--frigo-500);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .chat-chef-content p {
+    font-size: 0.8125rem;
+    color: var(--slate-700);
+    line-height: 1.4;
+  }
+
+  /* Staggered chat animation */
+  .chat-anim-1 { animation-delay: 0.5s; }
+  .chat-anim-2 { animation-delay: 1.5s; }
+  .chat-anim-3 { animation-delay: 2.5s; }
+  .chat-anim-4 { animation-delay: 0.3s; }
+
+  @keyframes chatSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Recipe cards inside phone */
+  .phone-recipes {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    opacity: 0;
+    animation: chatSlideIn 0.5s ease forwards;
   }
 
-  .phone-card-green {
+  .phone-recipe-card {
+    border-radius: 14px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: transform 0.2s;
+  }
+
+  .phone-recipe-card:hover {
+    transform: scale(1.02);
+  }
+
+  .recipe-green {
     background: linear-gradient(135deg, #ecfdf5, #d1fae5);
   }
 
-  .phone-card-orange {
+  .recipe-orange {
     background: linear-gradient(135deg, var(--frigo-50), var(--frigo-100));
     border: 2px solid var(--frigo-200);
   }
 
-  .phone-card-dark {
+  .recipe-dark {
     background: linear-gradient(135deg, var(--slate-800), var(--slate-900));
   }
 
-  .phone-card-badge {
-    font-size: 0.625rem;
+  .recipe-badge-wrap {
+    margin-bottom: 2px;
+  }
+
+  .recipe-badge {
+    font-size: 0.5625rem;
     font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .phone-card-green .phone-card-badge { color: #059669; }
-  .phone-card-orange .phone-card-badge { color: var(--frigo-600); }
-  .phone-card-dark .phone-card-badge { color: var(--slate-400); }
+  .recipe-green .recipe-badge { color: #059669; }
+  .recipe-orange .recipe-badge { color: var(--frigo-600); }
+  .recipe-dark .recipe-badge { color: var(--slate-400); }
 
-  .phone-card-name {
-    font-size: 1.125rem;
+  .recipe-name {
+    font-size: 0.9375rem;
     font-weight: 700;
   }
 
-  .phone-card-green .phone-card-name { color: var(--slate-800); }
-  .phone-card-orange .phone-card-name { color: var(--slate-900); }
-  .phone-card-dark .phone-card-name { color: #ffffff; }
+  .recipe-green .recipe-name { color: var(--slate-800); }
+  .recipe-orange .recipe-name { color: var(--slate-900); }
+  .recipe-dark .recipe-name { color: #ffffff; }
 
-  .hero-glow {
+  .recipe-meta {
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  .recipe-green .recipe-meta { color: #059669; }
+  .recipe-orange .recipe-meta { color: var(--frigo-500); }
+  .recipe-dark .recipe-meta { color: var(--slate-400); }
+
+  /* Floating mic button */
+  .phone-mic-btn {
     position: absolute;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(249, 115, 22, 0.15), transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    bottom: 14px;
+    right: 14px;
+    width: 44px;
+    height: 44px;
+    background: var(--frigo-500);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+    opacity: 0;
+    animation: chatSlideIn 0.5s ease forwards;
+    z-index: 5;
+  }
+
+  .mic-pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--frigo-300);
+    animation: micPulse 2s ease-out infinite;
+  }
+
+  @keyframes micPulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.4); opacity: 0; }
+  }
+
+  /* Floating food emojis */
+  .hero-float {
+    position: absolute;
+    z-index: 3;
+    font-size: 2rem;
+    animation: float 6s ease-in-out infinite;
     pointer-events: none;
+  }
+
+  .hero-float-1 {
+    top: 10%;
+    right: -20px;
+    animation-delay: 0s;
+  }
+
+  .hero-float-2 {
+    bottom: 20%;
+    right: -30px;
+    animation-delay: 2s;
+  }
+
+  .hero-float-3 {
+    top: 50%;
+    left: -20px;
+    animation-delay: 4s;
+  }
+
+  @media (max-width: 767px) {
+    .hero-float { display: none; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-12px) rotate(5deg); }
+    75% { transform: translateY(8px) rotate(-3deg); }
+  }
+
+  /* Scroll indicator */
+  .hero-scroll-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+    animation-delay: 2s;
+  }
+
+  @media (max-width: 767px) {
+    .hero-scroll-indicator { display: none; }
+  }
+
+  .scroll-mouse {
+    width: 24px;
+    height: 40px;
+    border: 2px solid var(--slate-300);
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .scroll-dot {
+    width: 4px;
+    height: 8px;
+    background: var(--frigo-500);
+    border-radius: 2px;
+    margin-top: 8px;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(10px); opacity: 0.3; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .voice-wave,
+    .hero-float,
+    .scroll-dot,
+    .mic-pulse,
+    .badge-dot,
+    .chat-bubble,
+    .phone-recipes,
+    .phone-mic-btn {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>
