@@ -1,25 +1,59 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import HowItWorks from '../components/HowItWorks.astro';
-import AntiGaspi from '../components/AntiGaspi.astro';
-import LeChef from '../components/LeChef.astro';
-import Download from '../components/Download.astro';
-import Footer from '../components/Footer.astro';
+// Page maintenance — site en construction
 ---
 
-<BaseLayout
-  title="DisChef — Votre frigo a du talent"
-  description="DisChef analyse votre frigo et compose des recettes anti-gaspi sur mesure grâce à l'IA. Scannez, parlez, cuisinez. Gratuit."
->
-  <Header slot="header" />
-  <Hero />
-  <Features />
-  <HowItWorks />
-  <AntiGaspi />
-  <LeChef />
-  <Download />
-  <Footer slot="footer" />
-</BaseLayout>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DisChef — Bientôt disponible</title>
+  <meta name="description" content="DisChef arrive bientôt. Votre frigo a du talent." />
+  <link rel="icon" type="image/png" href="/images/dischef-logo.png" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #FFFBF5;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      text-align: center;
+      padding: 2rem;
+    }
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2rem;
+      border-radius: 24px;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #F97316;
+    }
+    .tagline {
+      font-size: 1.25rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+    .message {
+      font-size: 1rem;
+      color: #94a3b8;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <img src="/images/dischef-logo.png" alt="DisChef" class="logo" />
+  <h1>Bientôt disponible</h1>
+  <p class="tagline">Votre frigo a du talent.</p>
+  <p class="message">Nous préparons quelque chose de délicieux. DisChef arrive très bientôt.</p>
+</body>
+</html>
